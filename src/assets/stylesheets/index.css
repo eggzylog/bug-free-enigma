@@ -14,12 +14,7 @@
 }
 
 .element {
-  background: white;
-  border: 1px solid #aaa;
-  display: flex;
-  position: relative;
-  align-items: center;
-  cursor: pointer;
+  @apply flex relative rounded-sm bg-white items-center cursor-pointer border border-slate-400;
 }
 
 .element:hover {
@@ -47,7 +42,7 @@
 }
 
 .element-card {
-  @apply w-20 h-20 md:w-32 md:h-32 p-2 border rounded-md flex flex-col gap-0 md:gap-3 justify-center items-center;
+  @apply w-full md:w-32 md:h-32 p-2 border rounded-md flex flex-col gap-0 md:gap-3 justify-center items-center;
 }
 
 .btn-link {
