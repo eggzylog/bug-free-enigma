@@ -1,5 +1,9 @@
 // packages
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
+// custom hooks
+import { useTheme } from '../hooks/useTheme';
 
 // data / apis
 import categories from '../data/categories';
@@ -7,7 +11,12 @@ import categories from '../data/categories';
 // components
 import ElementDisplay from '../components/ElementDisplay';
 
+// assets
+import light from '../assets/images/light-mode-toggle-icon.svg';
+import dark from '../assets/images/dark-mode-toggle-icon.svg';
+
 const ElementInfo: React.FC<ElementType> = ({ element }) => {
+  // states and hooks
   const {
     number,
     symbol,
@@ -27,8 +36,34 @@ const ElementInfo: React.FC<ElementType> = ({ element }) => {
     source,
   } = element;
 
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
+
+  const toggleSwitch = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+
   return (
-    <div className='px-12 py-6'>
+    <div className='p-4 md:px-12 md:py-6 bg-slate-100 dark:bg-slate-600 dark:text-white h-screen'>
+      <button
+        type='button'
+        onClick={toggleSwitch}
+        className='fixed z-10 right-2 top-2 w-16 p-1 rounded-md'
+      >
+        {theme === 'dark' ? (
+          <img src={dark} alt='Dark Mode' />
+        ) : (
+          <img src={light} alt='Light Mode' />
+        )}
+      </button>
+
       <Link to='/' className='btn-link'>
         Back
       </Link>
@@ -45,7 +80,7 @@ const ElementInfo: React.FC<ElementType> = ({ element }) => {
           </div>
 
           <div
-            className='rounded-lg shadow-md'
+            className='rounded-lg shadow-md w-full md:w-auto'
             style={{ backgroundColor: categories[category], color: 'white' }}
           >
             <div className='p-4'>
