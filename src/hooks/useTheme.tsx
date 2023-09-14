@@ -1,4 +1,3 @@
-// Create a custom hook to manage theme state and local storage
 import { useState, useEffect } from 'react';
 
 export const useTheme = () => {

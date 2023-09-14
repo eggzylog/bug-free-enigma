@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.wrapper {
+  @apply p-4 md:px-12 md:py-6 bg-slate-100 dark:bg-slate-600 h-screen;
+}
+
 .periodic-table {
   display: grid;
   grid-template-columns: repeat(18, 56px);
@@ -24,17 +28,14 @@
 
 .element .number {
   font-size: 8px;
-  position: absolute;
-  top: 5px;
-  left: 5px;
+
+  @apply absolute top-1 left-1;
 }
 
 .element .name {
   font-size: 8px;
-  position: absolute;
-  bottom: 5px;
-  display: flex;
-  justify-content: center;
+
+  @apply flex justify-center absolute bottom-1;
 }
 
 .element-info-card {
