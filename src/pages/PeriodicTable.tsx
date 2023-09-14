@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 // data / apis
 import data from '../data/elements.json';
+import categories from '../data/categories';
 
 // other pages
 import HoveredElement from './HoveredElement';
@@ -14,13 +15,22 @@ const PeriodicTable = () => {
     null
   );
 
+  const [highlightedCategory, setHighlightedCategory] = useState<string | null>(
+    null
+  );
+
   // functions
   const handleMouseOver = (element: ElementInfoType) => {
-    setHoveredElement(element);
+    setHoveredElement({
+      ...element,
+      backgroundColor: categories[element.category],
+    });
+    setHighlightedCategory(element.category);
   };
 
   const handleMouseOut = () => {
     setHoveredElement(null);
+    setHighlightedCategory(null);
   };
 
   return (
@@ -30,23 +40,30 @@ const PeriodicTable = () => {
       </h1>
 
       <div className='periodic-table'>
-        {data.elements.map((element) => (
-          <Link
-            to={`/${element.name}`}
-            key={element.name}
-            className='element justify-center'
-            style={{
-              gridRow: element.ypos,
-              gridColumn: element.xpos,
-            }}
-            onMouseOver={() => handleMouseOver(element)}
-            onMouseOut={handleMouseOut}
-          >
-            <strong>{element.symbol}</strong>
-            <small className='number'>{element.number}</small>
-            <small className='name'>{element.name}</small>
-          </Link>
-        ))}
+        {data.elements.map((element) => {
+          const { name, ypos, xpos, category, symbol, number } = element;
+
+          return (
+            <Link
+              to={`/${name}`}
+              key={name}
+              className='element justify-center'
+              style={{
+                gridRow: ypos,
+                gridColumn: xpos,
+                backgroundColor:
+                  highlightedCategory === category ? categories[category] : '',
+                color: highlightedCategory === category ? 'white' : '',
+              }}
+              onMouseOver={() => handleMouseOver(element)}
+              onMouseOut={handleMouseOut}
+            >
+              <strong>{symbol}</strong>
+              <small className='number'>{number}</small>
+              <small className='name'>{name}</small>
+            </Link>
+          );
+        })}
 
         {/* hovered element */}
         <div className='row-start-1 row-span-3 col-start-3 col-span-10'>
