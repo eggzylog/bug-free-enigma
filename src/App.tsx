@@ -1,28 +1,27 @@
+// packages
+import { Route, Routes } from 'react-router-dom';
+
+// data / apis
 import data from './data/elements.json';
+
+// pages
+import PeriodicTable from './pages/PeriodicTable';
+import ElementInfoPage from './pages/ElementInfoPage';
 
 const App = () => {
   return (
-    <div className='m-4'>
-      <h1 className='text-center text-2xl font-bold'>
-        Periodic Table of Elements
-      </h1>
-      <div className='periodic-table'>
-        {data.elements.map((element) => (
-          <div
-            key={element.name}
-            className='element justify-center'
-            style={{
-              gridRow: element.ypos,
-              gridColumn: element.xpos,
-            }}
-          >
-            <strong>{element.symbol}</strong>
-            <small className='number'>{element.number}</small>
-            <small className='name'>{element.name}</small>
-          </div>
-        ))}
-      </div>
-    </div>
+    <Routes>
+      <Route path='/' element={<PeriodicTable />} />
+
+      {/* custom [dynamic] route for each element */}
+      {data.elements.map((element) => (
+        <Route
+          key={element.number}
+          path={element.name}
+          element={<ElementInfoPage element={element} />}
+        />
+      ))}
+    </Routes>
   );
 };
 
