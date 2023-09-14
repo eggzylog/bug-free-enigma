@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.periodic-table {
+  display: grid;
+  grid-template-columns: repeat(18, 56px);
+  grid-template-rows: repeat(10, 56px);
+  grid-gap: 4px;
+  width: 1080px;
+  margin: 0 auto;
+  position: relative;
+  user-select: none;
+}
+
+.element {
+  background: white;
+  border: 1px solid #aaa;
+  display: flex;
+  position: relative;
+  align-items: center;
+  cursor: pointer;
+}
+
+.element:hover {
+  transform: scale(1.25, 1.25);
+  z-index: 1;
+}
+
+.element .number {
+  font-size: 8px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.element .name {
+  font-size: 8px;
+  position: absolute;
+  bottom: 5px;
+  display: flex;
+  justify-content: center;
+}
