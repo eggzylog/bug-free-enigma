@@ -41,3 +41,23 @@
   display: flex;
   justify-content: center;
 }
+
+.element-info-card {
+  @apply flex flex-col md:flex-row gap-1 md:gap-8 mt-4 items-start;
+}
+
+.element-card {
+  @apply w-20 h-20 md:w-32 md:h-32 p-2 border rounded-md flex flex-col gap-0 md:gap-3 justify-center items-center;
+}
+
+.btn-link {
+  @apply underline text-blue-500 text-xl;
+}
+
+.element-properties {
+  @apply col-span-full md:col-span-4 rounded-lg shadow-md p-4;
+}
+
+.element-summary {
+  @apply col-span-full md:col-span-8 rounded-lg shadow-md p-4;
+}

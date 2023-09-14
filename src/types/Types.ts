@@ -26,6 +26,7 @@ type ElementInfoType = {
   electron_affinity: number | null;
   electronegativity_pauling: number | null;
   ionization_energies: ArrayOfNumbersType[];
+  backgroundColor?: string;
 };
 
 type ElementType = {
@@ -39,4 +40,8 @@ type ElementDisplay = {
 
 type CategoryType = {
   cur: string;
+};
+
+type CategoryColor = {
+  category: string;
 };
