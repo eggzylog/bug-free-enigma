@@ -22,7 +22,7 @@ const ToggleButton = () => {
     <button
       type='button'
       onClick={toggleSwitch}
-      className='fixed z-10 right-2 top-2 w-16 p-1 rounded-md'
+      className='fixed z-10 right-6 top-2 w-16 p-1 rounded-md'
     >
       {theme === 'dark' ? (
         <img src={dark} alt='Dark Mode' />
